@@ -32,7 +32,6 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 searchBox(),
-
                 Expanded(
                   child: ListView(
                     children: [
@@ -51,7 +50,6 @@ class _HomeState extends State<Home> {
                         ToDoItem(
                           todo: t,
                           onToDoChanged: _handleToDoChange,
-                          
                         ),
                     ],
                   ),
@@ -59,7 +57,6 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-          
           Align(
               alignment: Alignment.bottomCenter,
               child: Row(
@@ -80,8 +77,8 @@ class _HomeState extends State<Home> {
                       child: TextField(
                         controller: _todoController,
                         decoration: InputDecoration(
-                            hintText: 'Add a new item',
-                            border: InputBorder.none,
+                          hintText: 'Add a new item',
+                          border: InputBorder.none,
                         ),
                       ),
                     ),
@@ -93,12 +90,11 @@ class _HomeState extends State<Home> {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        
+                        _addToDoItem(_todoController.text);
                       },
                       child: Text(
                         '+',
-                        style: TextStyle(fontSize: 40,
-                        color: Colors.black),
+                        style: TextStyle(fontSize: 40, color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(
                           primary: Colors.tealAccent,
@@ -121,8 +117,7 @@ class _HomeState extends State<Home> {
         SizedBox(
             height: 40,
             width: 40,
-            child:
-                CircleAvatar(backgroundImage: AssetImage('assets/task.png')))
+            child: CircleAvatar(backgroundImage: AssetImage('assets/task.png')))
       ]),
     );
   }
@@ -131,8 +126,7 @@ class _HomeState extends State<Home> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
-          color: Colors.white24,
-          borderRadius: BorderRadius.circular(20)),
+          color: Colors.white24, borderRadius: BorderRadius.circular(20)),
       child: TextField(
         onChanged: ((value) => _find(value)),
         decoration: InputDecoration(
@@ -165,8 +159,14 @@ class _HomeState extends State<Home> {
   //     todosList.removeWhere((item) => item.id == id);
   //   });
   // }
-
- 
+  void _addToDoItem(String toDo) {
+    setState(() {
+      todosList.add(ToDo(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          todoText: toDo));
+    });
+    _todoController.clear();
+  }
 
   void _find(String searchWord) {
     List<ToDo> results = [];
@@ -180,7 +180,7 @@ class _HomeState extends State<Home> {
     }
 
     setState(() {
-      _foundToDo=results;
+      _foundToDo = results;
     });
   }
 }
