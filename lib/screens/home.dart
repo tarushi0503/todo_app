@@ -50,6 +50,7 @@ class _HomeState extends State<Home> {
                         ToDoItem(
                           todo: t,
                           onToDoChanged: _handleToDoChange,
+                          onDeleteItem: _deleteTodoItem,
                         ),
                     ],
                   ),
@@ -154,11 +155,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  // void _deleteTodoItem(String id) {
-  //   setState(() {
-  //     todosList.removeWhere((item) => item.id == id);
-  //   });
-  // }
   void _addToDoItem(String toDo) {
     setState(() {
       todosList.add(ToDo(
@@ -181,6 +177,12 @@ class _HomeState extends State<Home> {
 
     setState(() {
       _foundToDo = results;
+    });
+  }
+
+  void _deleteTodoItem(String id) {
+    setState(() {
+      todosList.removeWhere((item) => item.id == id);
     });
   }
 }
