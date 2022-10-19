@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                       ),
                       child: TextField(
                         controller: _todoController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Add a new item',
                           border: InputBorder.none,
                         ),
@@ -91,7 +91,9 @@ class _HomeState extends State<Home> {
                           sigmaX: 15, sigmaY: 15, tileMode: TileMode.clamp),
                       child: GestureDetector(
                         onTap: () {
-                          _addToDoItem(_todoController.text);
+                          if (_todoController.text.isNotEmpty) {
+                            _addToDoItem(_todoController.text);
+                          }
                         },
                         child: Container(
                           height: 50,
