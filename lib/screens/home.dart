@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/todo_item.dart';
 import '../model/todo.dart';
@@ -59,52 +61,64 @@ class _HomeState extends State<Home> {
             ),
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        bottom: 20,
-                        right: 20,
-                        left: 20,
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        controller: _todoController,
-                        decoration: InputDecoration(
-                          hintText: 'Add a new item',
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
                     margin: EdgeInsets.only(
                       bottom: 20,
                       right: 20,
+                      left: 20,
                     ),
-                    child: ElevatedButton(
-                      onPressed: () {
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: TextField(
+                      controller: _todoController,
+                      decoration: InputDecoration(
+                        hintText: 'Add a new item',
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                ),
+                ClipRRect(
+                  child: InkWell(
+                    splashColor: Colors.teal,
+                    onTap: () {
+                      if (_todoController.text.isNotEmpty) {
                         _addToDoItem(_todoController.text);
-                      },
+                      }
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      margin: const EdgeInsets.only(
+                        bottom: 20,
+                        right: 20,
+                      ),
+                      decoration: BoxDecoration(
+                          color: _foundToDo.length == 6
+                              ? Colors.white.withOpacity(0.7)
+                              : Colors.white.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(15),
+                          border:
+                              Border.all(width: 0.9, color: Colors.white30)),
                       child: Text(
                         '+',
-                        style: TextStyle(fontSize: 40, color: Colors.black),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 40, color: Colors.teal.shade500),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.tealAccent,
-                          minimumSize: Size(50, 50),
-                          elevation: 10),
                     ),
-                  )
-                ],
-              ))
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
