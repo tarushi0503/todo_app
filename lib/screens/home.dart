@@ -24,12 +24,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 92, 207, 186),
+      backgroundColor: const Color.fromARGB(255, 92, 207, 186),
       appBar: _buildAppBar(),
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
             child: Column(
               children: [
                 searchBox(),
@@ -37,8 +37,8 @@ class _HomeState extends State<Home> {
                   child: ListView(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 50, bottom: 20),
-                        child: Text(
+                        margin: const EdgeInsets.only(top: 50, bottom: 20),
+                        child: const Text(
                           "To Dos",
                           style: TextStyle(
                             color: Colors.white,
@@ -65,13 +65,13 @@ class _HomeState extends State<Home> {
                 children: [
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         bottom: 20,
                         right: 20,
                         left: 20,
                       ),
                       padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -127,9 +127,10 @@ class _HomeState extends State<Home> {
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.teal,
+      // ignore: prefer_const_literals_to_create_immutables
       title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Icon(Icons.menu, color: Colors.white, size: 30),
-        SizedBox(
+        const Icon(Icons.menu, color: Colors.white, size: 30),
+        const SizedBox(
             height: 40,
             width: 40,
             child: CircleAvatar(backgroundImage: AssetImage('assets/task.png')))
@@ -139,12 +140,12 @@ class _HomeState extends State<Home> {
 
   Widget searchBox() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
           color: Colors.white24, borderRadius: BorderRadius.circular(20)),
       child: TextField(
         onChanged: ((value) => _find(value)),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
