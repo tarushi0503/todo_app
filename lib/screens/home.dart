@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/widgets/todo_item.dart';
 import '../model/todo.dart';
+import 'dart:ui';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -77,32 +78,45 @@ class _HomeState extends State<Home> {
                       ),
                       child: TextField(
                         controller: _todoController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Add a new item',
                           border: InputBorder.none,
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      bottom: 20,
-                      right: 20,
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _addToDoItem(_todoController.text);
-                      },
-                      child: Text(
-                        '+',
-                        style: TextStyle(fontSize: 40, color: Colors.black),
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                          sigmaX: 15, sigmaY: 15, tileMode: TileMode.clamp),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (_todoController.text.isNotEmpty) {
+                            _addToDoItem(_todoController.text);
+                          }
+                        },
+                        child: Container(
+                          height: 50,
+                          width: 50,
+                          margin: const EdgeInsets.only(
+                            bottom: 20,
+                            right: 20,
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                  width: 0.9, color: Colors.white30)),
+                          child: Text(
+                            '+',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 40, color: Colors.teal.shade500),
+                          ),
+                        ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.tealAccent,
-                          minimumSize: Size(50, 50),
-                          elevation: 10),
                     ),
-                  )
+                  ),
                 ],
               ))
         ],
