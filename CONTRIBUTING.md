@@ -20,4 +20,6 @@ College/Organization name: Abes Engineering College.
 Name: Prajwal Kale
 Github username: PrajwalGKale
 
-
+Name: Aryan Garg
+Github username: ksba2004
+College/Organization name: ABES Engineering College
